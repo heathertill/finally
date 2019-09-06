@@ -40,7 +40,7 @@ const Login: React.SFC<LoginProps> = ({ history }) => {
                 <>
                     <div className="alert alert-danger p-1 m-3">
                         <div className="m-3">Invalid Credentials</div>
-                        <Link to='/login' className="btn btn-danger text-white m-3" >Try Again</Link>
+                        <button className="btn btn-outline-danger m-3" onClick={(e: React.MouseEvent<HTMLButtonElement>) => location.reload()} >Try Again</button>
                     </div>
                 </>
             )
