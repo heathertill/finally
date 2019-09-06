@@ -31,7 +31,7 @@ const OneBook: React.SFC<OneBookProps> = ({ match: { params: { id } } }) => {
 
     const canEdit = () => {
         if (User.role === 'admin') {
-            return <Link to={`/edit/${book.id}`} className="btn btn-warning">Edit Book</Link>
+            return <Link to={`/edit/${book.id}`} className="btn btn-warning mx-2">Edit Book</Link>
         }
     }
 
@@ -43,7 +43,8 @@ const OneBook: React.SFC<OneBookProps> = ({ match: { params: { id } } }) => {
                             <p className="card-text">{book.author}</p>
                             <p className="card-text">{formatter.format(book.price)}</p>
                             <p className="card-text">{book.category}</p>
-                            {canEdit()}
+                    {canEdit()}
+                    <Link to={'/books'} className="btn btn-warning mx-2">Back to Books</Link>
                         </div>
                     </div>
         </section>

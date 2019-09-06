@@ -9,6 +9,7 @@ export interface NavbarProps {
 const Navbar: React.SFC<NavbarProps> = () => {
 
     const showLogin = () => {
+        console.log('user', User)
         if (User.userid !== null) {
             return <button className="text-white bg-dark border-dark" onClick={() => logout()}>Logout</button>
 
@@ -18,8 +19,10 @@ const Navbar: React.SFC<NavbarProps> = () => {
     }
 
     const logout = () => {
+        location.replace('/books')
+        // location.reload();
         ClearAccessToken();
-        location.reload();
+        
     }
 
     return (

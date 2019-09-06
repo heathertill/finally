@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { json, SetAccessToken, ClearAccessToken } from '../../utils/api';
+import { json, SetAccessToken, ClearAccessToken, User } from '../../utils/api';
 import { RouteComponentProps, Link } from 'react-router-dom'
 
 export interface LoginProps extends RouteComponentProps { }
@@ -24,6 +24,7 @@ const Login: React.SFC<LoginProps> = ({ history }) => {
                 if (result.role) {
                     setLogStatus(true);
                     history.push('/books');
+                    location.reload();
                 }
             } else {
                 setLogStatus(false);

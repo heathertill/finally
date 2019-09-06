@@ -23,14 +23,11 @@ const Edit: React.SFC<EditProps> = ({history, match: { params: { id } } }) => {
         try {
             console.log('id', id)
             let book = await json(`/api/books/${id}`);
-            // let cat = await json('/api/category');
-            // console.log('cats', cat)
             setTitle(book.title);
             setAuthor(book.author);
             setPrice(book.price);
             setCategory(book.category);
             setCategoryid(book.categoryid);
-            // setCategories(cat)
         } catch (e) {
             console.log(e)
         }
