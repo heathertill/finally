@@ -10,7 +10,6 @@ router.post('/', async (req, res, next) => {
     try {
         let hash = HashPassword(req.body.password)
         let user = {
-            name: req.body.name,
             email: req.body.email,
             password: hash
         }

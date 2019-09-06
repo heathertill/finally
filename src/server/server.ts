@@ -3,6 +3,9 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import * as passport from 'passport';
 
+import './middleware/bearerstrategy';
+import './middleware/localstrategy';
+
 import routes from './routes';
 
 

@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import queries from '../../db';
 
+import { isAdmin } from '../../utils/routerMiddleware';
+
 const router = Router();
 
 router.get('/', async (req, res, next) => {
@@ -24,7 +26,7 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
     let body = req.body
     try {
         let newBook = await queries.Books.newBook(body);
@@ -35,7 +37,7 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdmin, async (req, res, next) => {
     let id = req.params.id
     let body = req.body;
     try {
@@ -47,7 +49,7 @@ router.put('/:id', async (req, res, next) => {
     }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id',isAdmin, async (req, res, next) => {
     let id = req.params.id;
     try {
         await queries.Books.deleteBook(id);
