@@ -9,7 +9,7 @@ import Books from './components/public/Books';
 import OneBook from './components/public/OneBook';
 import Edit from './components/admin/Edit';
 import Login from './components/admin/Login';
-import Register from './components/admin/Register'''
+import Register from './components/admin/Register';
 
 
 const App: React.SFC<AppProps> = () => {

@@ -1,14 +1,67 @@
 import * as React from 'react';
-import { Component } from 'react';
+import { useState } from 'react';
+import { json, SetAccessToken, ClearAccessToken } from '../../utils/api';
+import { RouteComponentProps, Link } from 'react-router-dom'
 
-export interface LoginProps {
-    
+export interface LoginProps extends RouteComponentProps { }
+
+const Login: React.SFC<LoginProps> = ({ history }) => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [logStatus, setLogStatus] = useState(true);
+
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        let body = {
+            email,
+            password
+        }
+        try {
+            let result = await json('/auth/login', 'POST', body)
+            if (result) {
+                SetAccessToken(result.token, { userid: result.userid, role: result.role })
+                if (result.role) {
+                    setLogStatus(true);
+                    history.push('/books');
+                }
+            } else {
+                setLogStatus(false);
+                ClearAccessToken();
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    };
+
+    const loginError = () => {
+        if (!logStatus) {
+            return (
+                <>
+                    <div className="alert alert-danger p-1 m-3">
+                        <div className="m-3">Invalid Credentials</div>
+                        <Link to='/login' className="btn btn-danger text-white m-3" >Try Again</Link>
+                    </div>
+                </>
+            )
+        }
+    }
+
+    return (
+        <section>
+            <form className="form-group border shadow p-3"
+                onSubmit={(e) => handleLogin(e)}>
+                <label htmlFor="email">Email</label>
+                <input type="email" value={email} className="form-control"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} />
+                <label htmlFor="password">Password</label>
+                <input type="password" value={password} className="form-control"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
+                <button type="submit" className="btn btn-warning my-3">Login</button>
+                {loginError()}
+            </form>
+        </section>
+    );
 }
- 
-const Login: React.SFC<LoginProps> = () => {
-    return ( 
-        <div>hello from login</div>
-     );
-}
- 
+
 export default Login;
