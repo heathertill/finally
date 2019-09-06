@@ -37,7 +37,7 @@ const Register: React.SFC<RegisterProps> = ({ history }) => {
     };
 
     const registrationError = () => {
-        if (!registered) {
+        if (registered === false) {
             return <div className="alert">There was a problem registering! Please try again.</div>
         }
     }

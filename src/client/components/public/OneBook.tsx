@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom'
 import { Book } from './Books';
-import {json, User} from '../../utils/api'
+import { json, User } from '../../utils/api';
+import { formatter } from '../../utils/currency';
 
 export interface OneBookProps extends RouteComponentProps<{ id: string }> { }
 
@@ -30,9 +31,8 @@ const OneBook: React.SFC<OneBookProps> = ({ match: { params: { id } } }) => {
 
     const canEdit = () => {
         if (User.role === 'admin') {
-            return <Link to={`/edit/${book.id}`} className="btn btn-warning">Edit</Link>
+            return <Link to={`/edit/${book.id}`} className="btn btn-warning">Edit Book</Link>
         }
-
     }
 
     return (
@@ -41,7 +41,7 @@ const OneBook: React.SFC<OneBookProps> = ({ match: { params: { id } } }) => {
                         <div className="card-body">
                             <h5 className="card-title">{book.title}</h5>
                             <p className="card-text">{book.author}</p>
-                            <p className="card-text">{book.price}</p>
+                            <p className="card-text">{formatter.format(book.price)}</p>
                             <p className="card-text">{book.category}</p>
                             {canEdit()}
                         </div>
