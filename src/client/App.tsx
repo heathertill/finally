@@ -7,6 +7,9 @@ import Navbar from './components/shared/Navbar';
 import Jumbo from './components/shared/Jumbo';
 import Books from './components/public/Books';
 import OneBook from './components/public/OneBook';
+import Edit from './components/admin/Edit';
+import Login from './components/admin/Login';
+import Register from './components/admin/Register'''
 
 
 const App: React.SFC<AppProps> = () => {
@@ -18,6 +21,9 @@ const App: React.SFC<AppProps> = () => {
                 <Switch>
                     <Route exact path='/books' component={Books} />
                     <Route exact path='/books/:id' component={OneBook} />
+                    <Route exact path='/edit/:id' component={Edit} />
+                    <Route exact path='/login' component={Login} />
+                    <Route exact path='/register' component={Register} />
                 </Switch>
             </main>
         </BrowserRouter>
