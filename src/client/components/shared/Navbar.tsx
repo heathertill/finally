@@ -32,6 +32,9 @@ const Navbar: React.SFC<NavbarProps> = () => {
                     <li className="nav-item">
                         <Link className="text-white mx-3" to='/books'>Books</Link>
                     </li>
+                    <li className="nav-item">
+                    <Link className="text-white mx-3" to='/new'>Add Book</Link>
+                    </li>
                 </div>
                 <li className="nav-item">
                     <Link className="text-white mx-3" to='/register'>Register</Link>

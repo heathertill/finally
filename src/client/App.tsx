@@ -10,6 +10,7 @@ import OneBook from './components/public/OneBook';
 import Edit from './components/admin/Edit';
 import Login from './components/admin/Login';
 import Register from './components/admin/Register';
+import NewBook from './components/admin/NewBook';
 
 
 const App: React.SFC<AppProps> = () => {
@@ -24,6 +25,7 @@ const App: React.SFC<AppProps> = () => {
                     <Route exact path='/edit/:id' component={Edit} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/register' component={Register} />
+                    <Route exact path='/new' component={NewBook} />
                 </Switch>
             </main>
         </BrowserRouter>
