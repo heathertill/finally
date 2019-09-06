@@ -10,7 +10,7 @@ interface Categories {
     name: string
 }
 
-const Edit: React.SFC<EditProps> = ({history, match: { params: { id } } }) => {
+const Edit: React.SFC<EditProps> = ({ history, match: { params: { id } } }) => {
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -58,16 +58,28 @@ const Edit: React.SFC<EditProps> = ({history, match: { params: { id } } }) => {
         } catch (e) {
             console.log(e)
         }
+    };
+
+    const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        try {
+            let result = await json(`/api/books/${id}`, 'DELETE')
+            if (result) {
+                history.push('/books')
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     useEffect(() => { getBook(), getCategories() }, []);
 
 
-    const canDelete = () => {
-        if (User.role === 'admin') {
-            return <Link to={`/edit/${id}`} className="btn btn-warning">Delete</Link>
-        }
-    }
+    // const canDelete = () => {
+    //     if (User.role === 'admin') {
+    //         return <Link to={`/edit/${id}`} className="btn btn-warning">Delete</Link>
+    //     }
+    // }
 
     return (
         <section>
@@ -92,7 +104,7 @@ const Edit: React.SFC<EditProps> = ({history, match: { params: { id } } }) => {
                     })}
                 </select>
                 <button className="btn btn-warning m-2" onClick={handleSubmit}>Edit</button>
-                {canDelete()}
+                <button className="btn btn-warning m-2" onClick={handleDelete}>Delete</button>
             </form>
         </section>
     );
