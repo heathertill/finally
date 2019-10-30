@@ -26,7 +26,7 @@ const OneBook: React.SFC<OneBookProps> = ({ match: { params: { id } } }) => {
             console.log(e)
         }
     };
-
+    
     useEffect(() => { getBook() }, [id]);
 
     const canEdit = () => {
@@ -34,7 +34,7 @@ const OneBook: React.SFC<OneBookProps> = ({ match: { params: { id } } }) => {
             return <Link to={`/edit/${book.id}`} className="btn btn-warning mx-2">Edit Book</Link>
         }
     }
-
+    
     return (
         <section>
             <div key={book.id} className="card border shadow m-3 p-2">

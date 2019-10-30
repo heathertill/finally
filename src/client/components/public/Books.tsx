@@ -16,9 +16,8 @@ export interface Book {
 }
 
 const Books: React.SFC<BooksProps> = () => {
-
     const [books, setBooks] = useState<Book[]>([]);
-
+    
     const getBooks = async () => {
         try {
             let books = await json('/api/books');
@@ -27,9 +26,7 @@ const Books: React.SFC<BooksProps> = () => {
             console.log(e)
         }
     };
-
     useEffect(() => { getBooks() }, []);
-
     return (
         <section>
             {books.map(book => {

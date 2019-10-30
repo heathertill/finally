@@ -9,7 +9,6 @@ interface Categories {
     id: number,
     name: string
 }
-
 const Edit: React.SFC<EditProps> = ({ history, match: { params: { id } } }) => {
 
     const [title, setTitle] = useState('');
@@ -32,24 +31,17 @@ const Edit: React.SFC<EditProps> = ({ history, match: { params: { id } } }) => {
             console.log(e)
         }
     };
-
     const getCategories = async () => {
         try {
             let cat = await json('/api/category');
             setCategories(cat);
         } catch (e) {
             console.log(e);
-        }
-    };
-
+        } };
+    
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        let body = {
-            title,
-            author,
-            price,
-            categoryid
-        }
+        let body = {title, author, price, categoryid }
         try {
             let result = await json(`/api/books/${id}`, 'PUT', body)
             if (result) {
@@ -57,9 +49,7 @@ const Edit: React.SFC<EditProps> = ({ history, match: { params: { id } } }) => {
             }
         } catch (e) {
             console.log(e)
-        }
-    };
-
+        }};
     const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         try {
@@ -71,10 +61,8 @@ const Edit: React.SFC<EditProps> = ({ history, match: { params: { id } } }) => {
             console.log(e)
         }
     }
-
     useEffect(() => { getBook(), getCategories() }, []);
-
-
+    
     // const canDelete = () => {
     //     if (User.role === 'admin') {
     //         return <Link to={`/edit/${id}`} className="btn btn-warning">Delete</Link>

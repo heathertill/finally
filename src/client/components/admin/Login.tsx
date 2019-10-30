@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { json, SetAccessToken, ClearAccessToken, User } from '../../utils/api';
-import { RouteComponentProps, Link } from 'react-router-dom'
+import { RouteComponentProps, Link } from 'react-router-dom';
 
 export interface LoginProps extends RouteComponentProps { }
 

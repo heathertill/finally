@@ -11,7 +11,6 @@ export const CreateToken = async (payload: IPayload) => {
     await queries.Tokens.updateToken(payload.accesstokenid, token);
     return token;
 };
-
 export const ValidToken = async (token: string) => {
     let payload = <IPayload>jwt.decode(token);
     let [accesstokenid] = await queries.Tokens.findOne(payload.accesstokenid, token);
@@ -21,13 +20,11 @@ export const ValidToken = async (token: string) => {
         return payload;
     }
 };
-
 export const GenerateExpireDate = () => {
     let expireDate = new Date();
     expireDate.setDate(expireDate.getDate() + 30);
     return expireDate;
 };
-
 export const IsExpired = (expireDate: Date) => {
     let now = new Date();
     if (expireDate >= now) {
@@ -36,7 +33,6 @@ export const IsExpired = (expireDate: Date) => {
         return true;
     }
 };
-
 export interface IPayload {
     [key: string]: any;
     userid: number;
