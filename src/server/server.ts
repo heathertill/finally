@@ -8,7 +8,6 @@ import './middleware/localstrategy';
 
 import routes from './routes';
 
-
 const app = express();
 
 let p = path.join(__dirname, '../public');
@@ -18,6 +17,7 @@ app.use(express.static(p));
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(passport.initialize());
+
 app.use(routes);
 
 app.get('*', (req, res) => {

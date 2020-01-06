@@ -11,7 +11,6 @@ const Navbar: React.SFC<NavbarProps> = () => {
     const showLogin = () => {
         if (User.userid !== null) {
             return <button className="text-white bg-dark border-dark" onClick={() => logout()}>Logout</button>
-
         } else if (User.userid === null) {
             return <Link className="text-white mx-3" to='/login'>Login</Link>
         }

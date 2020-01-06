@@ -1,5 +1,4 @@
 import * as express from 'express';
-
 import queries from '../../db';
 import { HashPassword } from '../../utils/security/password';
 import { CreateToken } from '../../utils/security/tokens';
